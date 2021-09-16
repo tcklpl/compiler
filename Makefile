@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS	= -g -Wall
-OFLAGS = -c -Wall
+OFLAGS = -O2 -c -Wall
 TARGET	= compilador.exe
 
 SRC_DIR = src
