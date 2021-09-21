@@ -13,3 +13,4 @@ ENQUANTO argumento < 1
       ATRIBUIR argumento - 1 A argumento
    FIM
 IMPRIMIR fatorial
+
