@@ -1,3 +1,4 @@
+#pragma once
 #include <memory>
 #include <map>
 #include <functional>
@@ -10,7 +11,7 @@ enum class StringState {
 };
 
 enum class NumberState {
-    IDLE, SIGNAL, READING_INT, SEPARATOR, READING_FLOAT
+    IDLE, READING_INT, SEPARATOR, READING_FLOAT
 };
 
 class LexicalAnalyzer {
@@ -42,11 +43,12 @@ class LexicalAnalyzer {
             {"IMPRIMIR", TokenType::res_Imprimir},
             {"SE", TokenType::res_Se},
             {"ENTAO", TokenType::res_Entao},
+            {"SENAO", TokenType::res_Senao},
             {"ENQUANTO", TokenType::res_Enquanto},
             {"INICIO", TokenType::res_Inicio},
             {"FIM", TokenType::res_Fim},
             {"E", TokenType::bol_And},
-            {"OR", TokenType::bol_Or},
+            {"OU", TokenType::bol_Or},
         };
 
         std::vector<std::function<std::shared_ptr<Token>()>> lexical_tests {
@@ -58,6 +60,8 @@ class LexicalAnalyzer {
             std::bind(&LexicalAnalyzer::check_for_delim, this),
             std::bind(&LexicalAnalyzer::check_for_string, this),
         };
+
+        struct TokenFilePosInfo get_current_file_pos();
 
         void skip_blank_spaces_and_comments();
         std::shared_ptr<Token> check_for_eof();

@@ -1,0 +1,6 @@
+:DECLARACOES
+argumento:INT
+
+:ALGORITMO
+LER argumento
+IMPRIMIR argumento

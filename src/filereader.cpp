@@ -65,12 +65,18 @@ char FileReader::read_char_from_buffer() {
 void FileReader::reset_pointer() {
     buffer_pointer = lexeme_start_ptr;
     lexeme = std::string();
+    newlines_unstashed = 0;
+    pos_unstashed = 0;
 }
 
 void FileReader::commit_pointer() {
     //std::cout << "Commit: " << lexeme << std::endl;
     lexeme_start_ptr = buffer_pointer;
     lexeme = std::string();
+    file_line += newlines_unstashed;
+    file_pos += pos_unstashed;
+    newlines_unstashed = 0;
+    pos_unstashed = 0;
 }
 
 std::string FileReader::cur_lexeme() {
@@ -82,6 +88,8 @@ char FileReader::read() {
         throw "File is not open, cannot read next character";
     char c = read_char_from_buffer();
     lexeme += c;
+    pos_unstashed++;
+    if (c == '\n') newlines_unstashed++;
     //std::cout << "leu " << c << " [bp: " << buffer_pointer << ", lp: " << lexeme_start_ptr << "]" << std::endl;
     return c;
 }
@@ -90,6 +98,17 @@ void FileReader::unread() {
     if (--buffer_pointer < 0) {
         buffer_pointer = buffer_size * 2 - 1;
     }
+    if (buffer[buffer_pointer] == '\n')
+        newlines_unstashed--;
     if (lexeme.length() > 0)
         lexeme.pop_back();
+    pos_unstashed--;
+}
+
+size_t FileReader::cur_pos() {
+    return file_pos;
+}
+
+size_t FileReader::cur_line() {
+    return file_line;
 }
