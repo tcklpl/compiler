@@ -1,7 +1,7 @@
 # Compiler for ALGUMA
 
 ## 1. Introduction
-This is a college project. A compiler fot the made up language 'ALGUMA' (**ALG**oritmos **U**sados para **M**ero **A**prendizado - *Algorithms used solely for learning purposes*)
+This is a college project. A compiler for the made up language 'ALGUMA' (**ALG**oritmos **U**sados para **M**ero **A**prendizado - *Algorithms used solely for learning purposes*)
 
 ALGUMA is a very simple language, consisting of the following:
 
@@ -19,7 +19,7 @@ Floats | `[0-9]+\.[0-9]+`
 Strings | `".*"`
 
 ## 2. Compiling
-Just run the Makefile inside a GNU/Linux shell (I haven't tried to run the Makefile on a windows shell but it will probably not run) with the `g++`, `g++-mingw-w64-x86-64` and `make` packages. The Makefile has 2 main rules: **dev** and **dist**, you can run them by jsut typing:
+Just run the Makefile inside a GNU/Linux shell (I haven't tried to run the Makefile on a windows shell but it will probably not run) with the `g++`, `g++-mingw-w64-x86-64` and `make` packages. The Makefile has 2 main rules: **dev** and **dist**, you can run them by just typing:
 ```
 make dev
 ```
@@ -38,7 +38,7 @@ The differences are:
 * Semantic Analyzer
 * Intermediary code generator (C)
 
-The compiler only compiles one file and there's no importing. At the current state you can run it as:
+The compiler only compiles one file and there's no importing or linking. At the current state you can run it as:
 ```
 compiler.exe [flags] [file]
 ```
